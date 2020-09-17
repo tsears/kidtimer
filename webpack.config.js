@@ -13,7 +13,7 @@ module.exports = {
   mode,
   context: __dirname,
   entry: {
-    main: './src/index.js',
+    main: './src/index.ts',
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -24,6 +24,13 @@ module.exports = {
   module: {
     rules: [
       { parser: { amd: false } },
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: [
+          { loader: 'ts-loader' },
+        ],
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
