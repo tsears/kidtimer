@@ -1,0 +1,15 @@
+.container {
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 1rem;
+
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+}
+
+.icon {
+  fill: white;
+}

@@ -1,4 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Caveat+Brush:regular|Source+Sans+Pro:300italic|Palanquin:regular');
+
+:root {
+  --main-bg-color: #86bbd8;
+  --countdown-color: #b4436c;
+  --light-text-color: #efefef;
+  --dark-text-color: #121212;
+  --base-font-size: 16px;
+}
+
 body {
-  background-color: black;
-  color: white;
+  background-color: var(--main-bg-color);
+  color: var(--dark-text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body, html{
+  font-family: "Palanquin";
+  font-weight: normal;
+  font-style: normal;
+  font-size: var(--base-font-size);
+  height: 100%;
+}
+
+h1{
+  font-family: "Caveat Brush";
+  font-weight: normal;
+  font-style: normal;
+}
+
+h2, h3, h4{
+  font-family: "Source Sans Pro";
+  font-weight: 300;
+  font-style: oblique;
+}
+
+h1 {
+  font-size: 3.052em;
+}
+
+h2 {
+  font-size: 2.441em;
 }

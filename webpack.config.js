@@ -1,7 +1,4 @@
 /* eslint-env node */
-'use strict'
-
-// const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
 const ForceCaseSensitivityPlugin = require('force-case-sensitivity-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
@@ -23,7 +20,6 @@ module.exports = {
   devtool: 'source-map',
   module: {
     rules: [
-      { parser: { amd: false } },
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
@@ -85,15 +81,14 @@ module.exports = {
   ],
   resolve: {
     modules: [
-      path.join('./src'),
       // This significantly speeds up build times.
+      path.join('./src'),
       path.join('./node_modules'),
     ],
+    extensions: ['.ts', '.tsx', '.js'],
   },
   externals: {
   },
-  // Webpack hosts the files here. Also serves as a reverse proxy to
-  // localProxy/proxy.js.
   devServer: {
     host: '0.0.0.0',
     compress: true,
