@@ -13,7 +13,7 @@ module.exports = {
   mode,
   context: __dirname,
   entry: {
-    main: './src/index.ts',
+    main: './src/index.tsx',
   },
   output: {
     path: path.join(__dirname, 'dist'),
