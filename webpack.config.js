@@ -47,6 +47,10 @@ module.exports = {
         ],
       },
       {
+        test: /(?<!\.m)\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
         test: /\.m\.css$/,
         use: [
           {

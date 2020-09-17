@@ -1,4 +1,6 @@
 import { h, render } from 'preact'
+import 'reset.css'
+import 'global.css'
 import * as styles from './main.m.css'
 
 document.addEventListener('DOMContentLoaded', () => {
