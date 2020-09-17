@@ -55,6 +55,30 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.m\.css$/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'dts-css-modules-loader',
+            options: {
+              namedExport: true,
+            },
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[name]_[hash:base64]',
+              },
+              importLoaders: 2,
+              sourceMap: true,
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
