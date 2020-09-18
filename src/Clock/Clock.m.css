@@ -1,0 +1,9 @@
+.clock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.timerSettings {
+  margin: 0 auto;
+}

@@ -3,6 +3,7 @@ import './reset.css'
 import './global.css'
 import * as styles from './main.m.css'
 import { Footer } from './Footer'
+import { Clock } from './Clock'
 
 document.addEventListener('DOMContentLoaded', () => {
   const el = document.createElement('div')
@@ -14,6 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class={styles.body}>
         <h1>Kid Timer!</h1>
         <h2>Help your kids know when time is up</h2>
+        <div class={styles.clockContainer}>
+          <Clock />
+        </div>
       </div>
       <Footer />
     </div>

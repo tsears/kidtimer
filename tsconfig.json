@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["*"]
+    },
     "sourceMap": true,
     "module": "es6",
     "moduleResolution": "node",

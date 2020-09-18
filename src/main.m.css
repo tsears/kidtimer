@@ -18,6 +18,11 @@
   width: 100%;
 }
 
+.clockContainer {
+  width: 40%;
+  margin: 1rem auto;
+}
+
 .body {
   margin-top: 5rem;
 }

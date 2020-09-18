@@ -85,6 +85,9 @@ module.exports = {
       path.join('./src'),
       path.join('./node_modules'),
     ],
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
     extensions: ['.ts', '.tsx', '.js'],
   },
   externals: {
