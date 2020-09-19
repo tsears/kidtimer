@@ -5,5 +5,9 @@
 }
 
 .timerSettings {
-  margin: 0 auto;
+  margin: .5em auto;
+}
+
+.timerGo {
+  margin: .5em auto;
 }

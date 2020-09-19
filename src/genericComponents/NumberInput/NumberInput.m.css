@@ -1,4 +1,13 @@
 .numberInput {
+  border: 0;
+  border: 1px solid #cecece;
+  border-radius: .4em;
+  box-shadow: 0px 15px 10px -15px rgba(0,0,0,0.89)
+
   height: 2em;
   width: 4rem;
+
+  padding: .5em;
+
+  margin: 0 .5em;
 }

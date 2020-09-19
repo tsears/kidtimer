@@ -1,0 +1,28 @@
+:root {
+  --button-dark-color: #1C2541;
+  --button-dark-hover: #264192;
+}
+
+.button {
+  border: 0;
+  border-radius: .4em;
+  padding: .5em 1em;
+  font-size: 1.2em;
+
+  cursor: pointer;
+
+  box-shadow: 0px 5px 30px -3px rgba(0,0,0,0.9)
+}
+
+.button:active {
+  box-shadow: 0px 5px 30px -6px rgba(0,0,0,0.9)
+}
+
+.dark {
+  background-color: var(--button-dark-color);
+  color: #efefef;
+}
+
+.dark:hover {
+  background-color: var(--button-dark-hover);
+}
