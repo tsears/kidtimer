@@ -25,7 +25,12 @@ export function Clock () {
 
   return (
     <div class={styles.clock}>
-      <TimerCircle hours={hours} minutes={minutes} active={active} />
+      <TimerCircle
+        hours={hours}
+        minutes={minutes}
+        active={active}
+        countdownDone={toggle}
+      />
       <div class={styles.timerSettings}>
         Set timer for <NumberInput onInput={handleHoursChange} /> hour(s) and
         <NumberInput onInput={handleMinutesChange} /> minute(s)

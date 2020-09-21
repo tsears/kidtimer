@@ -1,22 +1,19 @@
 import { h } from 'preact'
 import { useEffect, useState } from 'preact/hooks'
 import * as styles from './TimerCircle.m.css'
+import { TimeReadout } from './TimeReadout'
+import { TimeRing } from './TimeRing'
 
 interface TimerSettings {
   hours: number
   minutes: number
   active: boolean
-}
-
-interface HumanTimeRemaining {
-  minutes: string
-  seconds: string
+  countdownDone: () => void
 }
 
 const MINUTES_IN_HOUR = 60
 const SECONDS_IN_MINUTE = 60
 const MILLISECONDS_IN_SECOND = 1000
-const FULL_DASH_ARRAY = 284
 
 const durationInMs = (hours: number, minutes:number): number => {
   const durationHours = hours || 0
@@ -33,11 +30,6 @@ export function TimerCircle (props: TimerSettings) {
   const [endTime, setEndTime] = useState<number>(0)
   const [isActive, setIsActive] = useState<boolean>(false)
   const [percentRemaining, setPercentRemaining] = useState<number>(1)
-  const [humanTimeRemaining, setHumanTimeRemaining] =
-    useState<HumanTimeRemaining>({
-      minutes: '0',
-      seconds: '0',
-    })
 
   useEffect(() => {
     let interval = null
@@ -48,34 +40,21 @@ export function TimerCircle (props: TimerSettings) {
           return
         }
         // re-calc percent remaining
+        const fullInterval = (endTime - startTime)
+        const remainingFraction = (endTime - Date.now()) / fullInterval
         setPercentRemaining(
-          (endTime - Date.now()) / (endTime - startTime)
+          remainingFraction - ((1 / fullInterval) * (1 - remainingFraction))
         )
-
-        // re-calc mins/secs remaining...
-        const msRemaining = endTime - Date.now()
-        const secondsRemaining = Math.floor(msRemaining / 1000)
-        const minutesRemaining = Math.floor(secondsRemaining / 60)
-        const fractionalSecondsRemaining = secondsRemaining % 60
-
-        setHumanTimeRemaining({
-          minutes: minutesRemaining.toString(),
-          seconds: fractionalSecondsRemaining < 10
-            ? `0${fractionalSecondsRemaining}`
-            : fractionalSecondsRemaining.toString(),
-        })
       }, 1000)
     } else {
       clearInterval(interval)
+      props.countdownDone()
       setIsActive(false)
       setStartTime(0)
       setEndTime(0)
       setPercentRemaining(100)
-      setHumanTimeRemaining({
-        minutes: '0',
-        seconds: '0',
-      })
     }
+
     return () => clearInterval(interval)
   }, [isActive])
 
@@ -91,26 +70,9 @@ export function TimerCircle (props: TimerSettings) {
 
   return (
     <div class={styles.timerContainer}>
-      <svg class={styles.timer} viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'>
-        <g class={styles.timerCircle}>
-          <circle class={styles.timerPathElapsed} cx='50' cy='50' r='45' />
-          <path
-            id='base-timer-path-remaining'
-            stroke-dasharray={
-              `${Math.floor(percentRemaining * FULL_DASH_ARRAY)} ${FULL_DASH_ARRAY}`
-            }
-            class={[styles.pathRemaining, styles.remainingPathColor].join(' ')}
-            d='
-              M 50, 50
-              m -45, 0
-              a 45,45 0 1,0 90,0
-              a 45,45 0 1,0 -90,0
-            '
-          />
-        </g>
-      </svg>
+      <TimeRing percentRemaining={percentRemaining} />
       <span class={styles.timerLabel}>
-        {humanTimeRemaining.minutes} min {humanTimeRemaining.seconds} sec
+        <TimeReadout endTime={endTime} />
       </span>
     </div>
   )
