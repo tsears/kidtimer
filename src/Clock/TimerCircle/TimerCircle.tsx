@@ -30,12 +30,18 @@ export function TimerCircle (props: TimerSettings) {
   const [endTime, setEndTime] = useState<number>(0)
   const [isActive, setIsActive] = useState<boolean>(false)
   const [percentRemaining, setPercentRemaining] = useState<number>(1)
+  const reset = () => {
+    setIsActive(false)
+    setStartTime(0)
+    setEndTime(0)
+    setPercentRemaining(100)
+  }
 
   useEffect(() => {
     let interval = null
     if (isActive) {
       interval = setInterval(() => {
-        if (Date.now() > endTime) {
+        if (Date.now() > endTime || !isActive) {
           setIsActive(false)
           return
         }
@@ -49,10 +55,7 @@ export function TimerCircle (props: TimerSettings) {
     } else {
       clearInterval(interval)
       props.countdownDone()
-      setIsActive(false)
-      setStartTime(0)
-      setEndTime(0)
-      setPercentRemaining(100)
+      reset()
     }
 
     return () => clearInterval(interval)
@@ -65,6 +68,9 @@ export function TimerCircle (props: TimerSettings) {
       setEndTime(
         Date.now() + durationInMs(props.hours, props.minutes)
       )
+    } else {
+      setIsActive(false)
+      reset()
     }
   }, [props.active])
 

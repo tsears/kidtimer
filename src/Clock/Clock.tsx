@@ -23,6 +23,8 @@ export function Clock () {
     setActive(!active)
   }
 
+  const countdownDone = () => { setActive(false) }
+
   const StartButton = buttonFn(styles.start)
   const StopButton = buttonFn(styles.stop)
 
@@ -36,7 +38,7 @@ export function Clock () {
         hours={hours}
         minutes={minutes}
         active={active}
-        countdownDone={toggle}
+        countdownDone={countdownDone}
       />
       <div class={styles.timerSettings}>
         Set timer for <NumberInput onInput={handleHoursChange} /> hour(s) and
