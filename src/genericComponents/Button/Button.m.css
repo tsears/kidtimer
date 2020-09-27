@@ -1,0 +1,50 @@
+:root {
+}
+
+.button {
+  --button-background-color: #b3b3b3;
+  --button-shadow-color: #4d4d4d;
+  --button-border-color: #7a7a7a;
+  --button-text-color: #eeeeee;
+  --button-text-shadow: #000000;
+
+	background-color: var(--button-background-color);
+  border: 1px solid var(--button-border-color);
+	border-radius: .25em;
+  box-shadow: 0px 10px 14px -7px var(--button-shadow-color);
+
+  display: inline-block;
+	cursor: pointer;
+
+  color: var(--button-text-color);
+  font-size: 1em;
+	font-weight: bold;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px var(--button-text-shadow);
+
+  padding: .5em 1em;
+}
+
+.button:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 0;
+  background-color: rgba(0,0,0,0.1)
+}
+
+.button:hover {
+  position: relative;
+}
+
+.button:hover:after {
+  height: 100%;
+  width: 100%;
+}
+
+.button:active {
+	position:relative;
+	top:1px;
+}

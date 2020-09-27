@@ -62,7 +62,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: {
-                localIdentName: '[name]_[hash:base64]',
+                localIdentName: '[name]_[local]_[hash:base64]',
               },
               importLoaders: 2,
               sourceMap: true,
@@ -85,6 +85,9 @@ module.exports = {
       path.join('./src'),
       path.join('./node_modules'),
     ],
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
     extensions: ['.ts', '.tsx', '.js'],
   },
   externals: {
