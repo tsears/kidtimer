@@ -6,7 +6,7 @@ interface TimeReadoutProps {
 }
 
 export function TimeReadout (props: TimeReadoutProps) {
-  const getHumanReaableTime = (): string => {
+  const getHumanReadableTime = (): string => {
     let humanMinutes: string
     let humanSeconds: string
 
@@ -29,6 +29,6 @@ export function TimeReadout (props: TimeReadoutProps) {
   }
 
   return (
-    <div class={styles.timeReadout}>{getHumanReaableTime()}</div>
+    <div class={styles.timeReadout}>{getHumanReadableTime()}</div>
   )
 }

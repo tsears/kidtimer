@@ -2,6 +2,8 @@ import { h, render } from 'preact'
 import './reset.css'
 import './global.css'
 import * as styles from './main.m.css'
+// import generic components early so consumers are able to override styles
+import './genericComponents'
 import { Footer } from './Footer'
 import { Clock } from './Clock'
 
@@ -14,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class={styles.appContent}>
       <div class={styles.body}>
         <h1>Kid Timer!</h1>
-        <h2>Help your kids know when time is up</h2>
         <div class={styles.clockContainer}>
           <Clock />
         </div>

@@ -2,7 +2,7 @@ import { h, JSX } from 'preact'
 import { useState } from 'preact/hooks'
 import * as styles from './Clock.m.css'
 import { TimerCircle } from './TimerCircle'
-import { NumberInput, Button } from '@/genericComponents'
+import { NumberInput, Button as buttonFn } from '@/genericComponents'
 
 export function Clock () {
   const [hours, setHours] = useState<number | undefined>(0)
@@ -23,6 +23,13 @@ export function Clock () {
     setActive(!active)
   }
 
+  const StartButton = buttonFn(styles.start)
+  const StopButton = buttonFn(styles.stop)
+
+  const getButton = () =>
+    active ? <StopButton onClick={toggle}>Stop</StopButton>
+      : <StartButton onClick={toggle}>Start</StartButton>
+
   return (
     <div class={styles.clock}>
       <TimerCircle
@@ -36,7 +43,7 @@ export function Clock () {
         <NumberInput onInput={handleMinutesChange} /> minute(s)
       </div>
       <div class={styles.timerGo}>
-        <Button text='Start' color='dark' onClick={toggle} />
+        {getButton()}
       </div>
     </div>
   )

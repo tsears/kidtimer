@@ -1,8 +1,5 @@
-interface CssClasses {
-  [cssClass: string] : boolean
-}
-
-export function classList (...classes: CssClasses[]) {
+export function classList (...classes: string[]) {
+  console.log('c', classes)
   return classes
     .filter(c => !!c)
     .join(' ')

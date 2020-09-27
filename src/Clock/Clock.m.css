@@ -11,3 +11,39 @@
 .timerGo {
   margin: .5em auto;
 }
+
+.button {
+  width: 10rem;
+}
+
+.start {
+  composes: button;
+
+  --start-button-green-color: #77b55a;
+  --start-button-shadow-color: #3e7327;
+  --start-button-border-color: #4b8f29;
+  --start-button-text-color: #efefef;
+  --start-button-text-shadow: #5b8a3c;
+
+	box-shadow: 0px 10px 14px -7px var(--start-button-shadow-color);
+  background-color: var(--start-button-green-color);
+  border-color: var(--start-button-border-color);
+  color: var(--start-button-text-color);
+  text-shadow: 0px 1px 0px var(--start-button-text-shadow);
+}
+
+.stop {
+  composes: button;
+
+  --stop-button-red-color: #e4685d;
+  --stop-button-shadow-color: #e67a73;
+  --stop-button-border-color: #ffffff;
+  --stop-button-text-color: #ffffff;
+  --stop-button-text-shadow: #b23e35;
+
+  box-shadow: 0px 10px 14px -7px var(--stop-button-shadow-color);
+  background-color: var(--stop-button-red-color);
+  border-color: var(--stop-button-border-color);
+  color: var(--stop-button-text-color);
+  text-shadow: 0px 1px 0px var(--stop-button-text-shadow);
+}

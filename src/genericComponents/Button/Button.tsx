@@ -2,20 +2,28 @@ import { h, JSX } from 'preact'
 import * as styles from './Button.m.css'
 import { classList } from '../utils'
 
-interface ButtonInfo {
-  text: string;
-  color: string;
-  onClick?: (e: JSX.TargetedEvent<HTMLInputElement, MouseEvent>) => void
+export type ButtonProps = {
+  onClick: (e: JSX.TargetedEvent<HTMLInputElement, MouseEvent>) => void
+  className?: string
+  children?: JSX.Element[] | string
 }
 
-export function Button (props: ButtonInfo) {
+function _button (props: ButtonProps) {
   return (
     <button
       onClick={props.onClick}
-      class={classList({
-        [styles.button]: true,
-        [styles.dark]: props.color === 'dark',
-      })}
-    >{props.text}</button>
+      class={classList(
+        styles.button,
+        props.className !== undefined && props.className,
+      )}
+    >{props.children}</button>
   )
+}
+
+export function Button (className: string) {
+  return (props: ButtonProps) => {
+    return (
+      <_button {...props} className={className}>{props.children}</_button>
+    )
+  }
 }
