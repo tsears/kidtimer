@@ -4,6 +4,7 @@
   "description": "Shows a large visual indicator for a kid-friendly activity timer",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint . --ext js,ts,tsx",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server",
     "build": "BUILD_MODE=production webpack"

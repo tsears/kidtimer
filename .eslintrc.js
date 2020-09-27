@@ -20,6 +20,12 @@ module.exports = {
   ],
   globals: {
   },
+  settings: {
+    react: {
+      // placate eslint-react-plugin when using with preact
+      version: '999.999.999',
+    },
+  },
   rules: {
     'no-var': 1,
     'no-debugger': 2,
