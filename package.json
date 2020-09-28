@@ -4,6 +4,8 @@
   "description": "Shows a large visual indicator for a kid-friendly activity timer",
   "main": "index.js",
   "scripts": {
+    "docker:build": "docker build . -t tsears/kidtimer",
+    "docker:run": "docker run --rm -it -p 8081:80 tsears/kidtimer",
     "lint": "eslint . --ext js,ts,tsx",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server",
