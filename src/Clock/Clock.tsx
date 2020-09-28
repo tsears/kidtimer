@@ -1,8 +1,11 @@
 import { h, JSX } from 'preact'
-import { useState } from 'preact/hooks'
+import { useState, useEffect } from 'preact/hooks'
+import NoSleep from 'nosleep.js'
 import * as styles from './Clock.m.css'
 import { TimerCircle } from './TimerCircle'
 import { NumberInput, Button as buttonFn } from '@/genericComponents'
+
+const noSleep = new NoSleep()
 
 export function Clock () {
   const [hours, setHours] = useState<number | undefined>(0)
@@ -23,7 +26,15 @@ export function Clock () {
     setActive(!active)
   }
 
-  const countdownDone = () => { setActive(false) }
+  useEffect(() => {
+    if (active) {
+      noSleep.enable()
+    } else {
+      noSleep.disable()
+    }
+  }, [active])
+
+  const countdownDone = () => { setActive(false); noSleep.disable() }
 
   const StartButton = buttonFn(styles.start)
   const StopButton = buttonFn(styles.stop)
