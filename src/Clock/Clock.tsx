@@ -22,6 +22,14 @@ export function Clock () {
       setMinutes(parseInt(currentTarget.value))
     }
 
+  const disableNoSleep = () => {
+    try {
+      noSleep.disable()
+    } catch {
+      // it'll throw if there was never a sleep enabled.  drop it, we don't care
+    }
+  }
+
   const toggle = () => {
     setActive(!active)
   }
@@ -30,11 +38,14 @@ export function Clock () {
     if (active) {
       noSleep.enable()
     } else {
-      noSleep.disable()
+      disableNoSleep()
     }
   }, [active])
 
-  const countdownDone = () => { setActive(false); noSleep.disable() }
+  const countdownDone = () => {
+    setActive(false)
+    disableNoSleep()
+  }
 
   const StartButton = buttonFn(styles.start)
   const StopButton = buttonFn(styles.stop)
