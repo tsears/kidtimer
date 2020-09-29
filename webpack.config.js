@@ -76,7 +76,9 @@ module.exports = {
     // Writes styles.css to disk.
     // new ExtractTextWebpackPlugin('[name].css'),
     new ForceCaseSensitivityPlugin(),
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'Kid Timer',
+    }),
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
   ],
   resolve: {

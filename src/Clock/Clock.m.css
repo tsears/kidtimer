@@ -37,11 +37,11 @@
 
   --stop-button-red-color: #e4685d;
   --stop-button-shadow-color: #e67a73;
-  --stop-button-border-color: #ffffff;
+  --stop-button-border-color: #b23e35;
   --stop-button-text-color: #ffffff;
   --stop-button-text-shadow: #b23e35;
 
-  box-shadow: 0px 10px 14px -7px var(--stop-button-shadow-color);
+  box-shadow: 0px 5px 14px -7px var(--stop-button-shadow-color);
   background-color: var(--stop-button-red-color);
   border-color: var(--stop-button-border-color);
   color: var(--stop-button-text-color);
