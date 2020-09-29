@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Caveat+Brush:regular|Source+Sans+Pro:300italic|Palanquin:regular');
 
 :root {
-  --main-bg-color: #86bbd8;
-  --countdown-color: #b4436c;
+  --main-bg-color: #444444;
+  --countdown-color: #b23e35;
   --light-text-color: #efefef;
-  --dark-text-color: #121212;
+  --dark-text-color: #dddddd;
   --base-font-size: 16px;
 }
 

@@ -9,7 +9,7 @@ const noSleep = new NoSleep()
 
 export function Clock () {
   const [hours, setHours] = useState<number | undefined>(0)
-  const [minutes, setMinutes] = useState<number | undefined>(0)
+  const [minutes, setMinutes] = useState<number | undefined>(10)
   const [active, setActive] = useState<boolean>(false)
 
   const handleHoursChange =
@@ -63,8 +63,22 @@ export function Clock () {
         countdownDone={countdownDone}
       />
       <div class={styles.timerSettings}>
-        Set timer for <NumberInput onInput={handleHoursChange} /> hour(s) and
-        <NumberInput onInput={handleMinutesChange} /> minute(s)
+        Set timer for
+
+        <NumberInput
+          onInput={handleHoursChange}
+          min={0}
+        />
+
+        hour(s) and
+
+        <NumberInput
+          onInput={handleMinutesChange}
+          min={0}
+          value={minutes}
+        />
+
+        minute(s)
       </div>
       <div class={styles.timerGo}>
         {getButton()}
