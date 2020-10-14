@@ -4,6 +4,8 @@ import NoSleep from 'nosleep.js'
 import * as styles from './Clock.m.css'
 import { TimerCircle } from './TimerCircle'
 import { NumberInput, Button as buttonFn } from '@/genericComponents'
+// @ts-ignore
+import alarm from '@/assets/audio/alarm/alarm.mp3'
 
 const noSleep = new NoSleep()
 
@@ -11,6 +13,9 @@ export function Clock () {
   const [hours, setHours] = useState<number | undefined>(0)
   const [minutes, setMinutes] = useState<number | undefined>(10)
   const [active, setActive] = useState<boolean>(false)
+  const [userCancelled, setUserCancelled] = useState<boolean>(false)
+
+  const audio = new Audio(alarm)
 
   const handleHoursChange =
     ({ currentTarget }: JSX.TargetedEvent<HTMLInputElement, Event>) => {
@@ -30,8 +35,13 @@ export function Clock () {
     }
   }
 
-  const toggle = () => {
-    setActive(!active)
+  const start = () => {
+    setActive(true)
+  }
+
+  const stop = () => {
+    setUserCancelled(true)
+    setActive(false)
   }
 
   useEffect(() => {
@@ -45,14 +55,20 @@ export function Clock () {
   const countdownDone = () => {
     setActive(false)
     disableNoSleep()
+
+    if (!userCancelled) {
+      audio.play()
+    }
+
+    setUserCancelled(false)
   }
 
   const StartButton = buttonFn(styles.start)
   const StopButton = buttonFn(styles.stop)
 
   const getButton = () =>
-    active ? <StopButton onClick={toggle}>Stop</StopButton>
-      : <StartButton onClick={toggle}>Start</StartButton>
+    active ? <StopButton onClick={stop}>Stop</StopButton>
+      : <StartButton onClick={start}>Start</StartButton>
 
   return (
     <div class={styles.clock}>
