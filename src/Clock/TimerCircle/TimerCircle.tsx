@@ -3,6 +3,8 @@ import { useEffect, useState } from 'preact/hooks'
 import * as styles from './TimerCircle.m.css'
 import { TimeReadout } from './TimeReadout'
 import { TimeRing } from './TimeRing'
+// @ts-ignore
+import tick from '@/assets/audio/tick/tick.mp3'
 
 interface TimerSettings {
   hours: number
@@ -26,6 +28,10 @@ const durationInMs = (hours: number, minutes:number): number => {
 }
 
 export function TimerCircle (props: TimerSettings) {
+  const audio = new Audio(tick)
+  audio.volume = 0.1
+
+  const [lastTick, setLastTick] = useState<number>(0)
   const [startTime, setStartTime] = useState<number>(0)
   const [endTime, setEndTime] = useState<number>(0)
   const [isActive, setIsActive] = useState<boolean>(false)
@@ -35,6 +41,8 @@ export function TimerCircle (props: TimerSettings) {
     setStartTime(0)
     setEndTime(0)
     setPercentRemaining(100)
+    setLastTick(0)
+    audio.load() // stop playback
   }
 
   useEffect(() => {
@@ -51,6 +59,12 @@ export function TimerCircle (props: TimerSettings) {
         setPercentRemaining(
           remainingFraction - ((1 / fullInterval) * (1 - remainingFraction))
         )
+
+        if (Date.now() - lastTick > 900) {
+          audio.load()
+          audio.play()
+          setLastTick(Date.now())
+        }
       }, 1000)
     } else {
       clearInterval(interval)
